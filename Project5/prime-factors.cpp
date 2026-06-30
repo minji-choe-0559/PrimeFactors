@@ -1,0 +1,4 @@
+class PrimeFactors {
+public:
+private:
+};
