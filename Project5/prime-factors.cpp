@@ -2,8 +2,8 @@
 
 class PrimeFactors {
 public:
-	std::vector <int>& of(int num) {
-        result.clear();
+	std::vector<int> of(int num) {
+        std::vector<int> result;
         for (int i = 2; i * i <= num; ++i)
         {
             while (num % i == 0)
@@ -17,6 +17,4 @@ public:
             result.push_back(num);
 		return result;
 	}
-private:
-	std::vector <int> result;
 };
