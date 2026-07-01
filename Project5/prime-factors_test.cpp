@@ -3,47 +3,31 @@
 
 using namespace testing;
 
-class PrimeFactorsFixture : public Test {
-protected:
-	void runTest(int num) {
-		EXPECT_EQ(expected, primeFactors.of(num));
-	}
-
-	static PrimeFactors primeFactors;
-	static std::vector <int> expected;
+struct PrimeFactorsParam {
+	int input;
+	std::vector<int> expected;
 };
 
-PrimeFactors PrimeFactorsFixture::primeFactors;
-std::vector<int> PrimeFactorsFixture::expected;
+class PrimeFactorsFixture : public TestWithParam<PrimeFactorsParam> {
+protected:
+	PrimeFactors primeFactors;
+};
 
-TEST_F(PrimeFactorsFixture, Of1) {
-	expected = {};
-	runTest(1);
+TEST_P(PrimeFactorsFixture, Of) {
+	auto param = GetParam();
+	EXPECT_EQ(param.expected, primeFactors.of(param.input));
 }
 
-TEST_F(PrimeFactorsFixture, Of2) {
-	expected = { 2 };
-	runTest(2);
-}
-
-TEST_F(PrimeFactorsFixture, Of3) {
-	expected = { 3 };
-	runTest(3);
-}
-
-TEST_F(PrimeFactorsFixture, Of4) {
-	expected = { 2, 2 };
-	runTest(4);
-}
-
-TEST_F(PrimeFactorsFixture, Of5) {
-	expected = { 5 };
-	runTest(5);
-}
-
-TEST_F(PrimeFactorsFixture, Of6Of7) {
-	expected = { 2, 3 };
-	runTest(6);
-	expected = { 7 };
-	runTest(7);
-}
+INSTANTIATE_TEST_SUITE_P(
+	PrimeFactorsTests,
+	PrimeFactorsFixture,
+	Values(
+		PrimeFactorsParam{ 1, {} },
+		PrimeFactorsParam{ 2, { 2 } },
+		PrimeFactorsParam{ 3, { 3 } },
+		PrimeFactorsParam{ 4, { 2, 2 } },
+		PrimeFactorsParam{ 5, { 5 } },
+		PrimeFactorsParam{ 6, { 2, 3 } },
+		PrimeFactorsParam{ 7, { 7 } }
+	)
+);
