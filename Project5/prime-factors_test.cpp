@@ -5,9 +5,6 @@ using namespace testing;
 
 class PrimeFactorsFixture : public Test {
 protected:
-	void SetUp() override {}
-	void TearDown() override {}
-
 	void runTest(int num) {
 		EXPECT_EQ(expected, primeFactors.of(num));
 	}
