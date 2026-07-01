@@ -3,6 +3,7 @@
 class PrimeFactors {
 public:
 	std::vector <int>& of(int num) {
+        result.clear();
         for (int i = 2; i * i <= num; ++i)
         {
             while (num % i == 0)

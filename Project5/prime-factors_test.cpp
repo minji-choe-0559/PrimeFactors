@@ -30,3 +30,11 @@ TEST(PrimeFactors, Of5) {
 	std::vector<int>expected = { 5 };
 	EXPECT_EQ(expected, primeFactors.of(5));
 }
+
+TEST(PrimeFactors, Of6Of7) {
+	PrimeFactors primeFactors;
+	std::vector<int>expected = { 2, 3 };
+	EXPECT_EQ(expected, primeFactors.of(6));
+	expected = { 7 };
+	EXPECT_EQ(expected, primeFactors.of(7));
+}
